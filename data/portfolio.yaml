@@ -1,0 +1,33 @@
+personal:
+  name: DIVYESH P K
+  role: Cloud Security Engineer
+  bio_lines:
+    - "I build high-performance, secure infrastructure and automated networks."
+    - "Focusing on the intersection of <span class=\"text-zinc-200\">Security</span> and <span class=\"text-zinc-200\">Scale</span>."
+  email: hello@pkdiv.com
+  resume_url: /resume.pdf
+  blog_url: "https://blog.pkdiv.com"
+  socials:
+    github: https://github.com/pkdiv
+    linkedin: https://linkedin.com/in/divyeshpk
+
+experiences:
+  - role: Cloud Security Engineer (& Network)
+    company: Betsol India Pvt Ltd
+    period: Jan 2024 – Nov 2025
+    description: "Configuring EC2, firewalls, and monitoring stacks. Leading network migrations and ensuring high availability."
+  - role: Associate Software Engineer
+    company: Betsol Software India Ltd
+    period: Jun 2022 – Jan 2024
+    description: "Managed offline Linux VMs and troubleshot network issues across data centers. Configured RADIUS and proxy authentication."
+  - role: Software Engineer Intern
+    company: Vaazu India Pvt Ltd
+    period: Aug 2021 - Dec 2021
+    description: "Developed REST APIs and managed AWS RDS. Built UI interfaces for fingerprint data access."
+
+projects:
+  - title: Conway’s Game of Life
+    description: "A browser-based version of cellular automaton rules using Python and Pyodide."
+    github: https://github.com/pkdiv/conway-game
+    demo: https://conwaygol.pkdiv.com/
+    tags: [Python, Pyodide, React]
