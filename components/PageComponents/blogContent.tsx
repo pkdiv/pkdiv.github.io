@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 type MediumItem = {
   title: string
@@ -58,22 +59,22 @@ export default function BlogContent() {
                       bg-gradient-to-br from-pink-500 via-purple-500 to-fuchsia-400 
                       opacity-40 blur-[180px]"></div>
 
-      {/* Top Right Cyan/Blue Splash */}
+
       <div className="absolute -top-20 -right-40 w-[450px] h-[450px] rounded-full 
                       bg-gradient-to-bl from-cyan-400 via-sky-500 to-blue-500 
                       opacity-40 blur-[180px]"></div>
 
-      {/* Bottom Left Orange/Yellow Splash */}
+
       <div className="absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full 
                       bg-gradient-to-tr from-yellow-400 via-orange-500 to-amber-400 
                       opacity-40 blur-[200px]"></div>
 
-      {/* Bottom Right Green/Cyan Splash */}
+
       <div className="absolute -bottom-40 -right-40 w-[550px] h-[550px] rounded-full 
                       bg-gradient-to-tl from-green-400 via-emerald-500 to-cyan-400 
                       opacity-35 blur-[220px]"></div>
 
-      {/* Center Faint Glow for Blend */}
+
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full 
                       bg-gradient-to-r from-pink-300 via-purple-300 to-yellow-300 
                       opacity-20 blur-[200px]"></div>
@@ -83,7 +84,7 @@ export default function BlogContent() {
         <h2 className="text-3xl font-bold text-gray-800">Blog</h2>
       </div>
 
-      {/* Blog Cards */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.length > 0 ? (
           posts.map((post, idx) => (
@@ -92,11 +93,15 @@ export default function BlogContent() {
               className="bg-white/90 backdrop-blur-sm shadow-md rounded-xl p-6 border border-gray-200 hover:shadow-lg transition"
             >
               {post.thumbnail && (
-                <img
-                  src={post.thumbnail}
-                  alt={post.title}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
+                <div className="relative w-full h-40 mb-4">
+                  <Image
+                    src={post.thumbnail}
+                    alt={post.title}
+                    fill
+                    className="object-cover rounded-md"
+                    unoptimized
+                  />
+                </div>
               )}
               <h3 className="text-xl font-semibold text-gray-900">
                 {post.title}

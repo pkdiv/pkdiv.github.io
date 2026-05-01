@@ -29,5 +29,14 @@ projects:
   - title: Conway’s Game of Life
     description: "A browser-based version of cellular automaton rules using Python and Pyodide."
     github: https://github.com/pkdiv/conway-game
-    demo: https://conwaygol.pkdiv.com/
+    demo: https://conwaygol.pkdiv.com
     tags: [Python, Pyodide, React]
+  - title: Todoy
+    description: "A browser-based Todo App."
+    demo: https://todoy.app
+    tags: [TypeScript, Tailwind, Next.js, shadcn/ui]
+  - title: Marklet
+    description: "Marklet is a browser extension that lets you save and return to the exact position inside a webpage — not just the page itself."
+    github: https://github.com/pkdiv/marklet
+    demo: https://chromewebstore.google.com/detail/marklet/lflhpnkjppmemkiikglfjnlahlcbkffh
+    tags: [JavaScript, WebExtension]
