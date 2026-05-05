@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google"
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-})
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-})
-
 export const metadata: Metadata = {
-  title: "Divyesh P K",
-  description: "Divyesh's portfolio website",
+  title: "Divyesh P K | Cloud & Security Engineer",
+  description: "Cloud & Security Engineer building secure and scalable systems.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
@@ -27,14 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body
-        className={`${inter.variable} ${montserrat.variable}`}
-      >
+      <body>
         {children}
       </body>
     </html>

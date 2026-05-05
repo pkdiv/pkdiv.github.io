@@ -30,7 +30,7 @@ export default function BlogContent() {
     async function fetchMediumFeed() {
       try {
         const res = await fetch(
-          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@pkdiv"
+          "https://api.rss2json.com/v1/api.json?rss_url=https://blog.pkdiv.com/rss.xml"
         )
 
         const data: MediumResponse = await res.json()

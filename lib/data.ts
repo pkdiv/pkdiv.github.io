@@ -10,6 +10,7 @@ export interface PortfolioData {
         email: string;
         resume_url: string;
         blog_url: string;
+        rss_url: string;
         socials: {
             github: string;
             linkedin: string;
@@ -23,15 +24,26 @@ export interface PortfolioData {
     }[];
     projects: {
         title: string;
-        description: string;
+        problem: string;
+        architecture: string;
+        decisions: string[];
+        challenges: string;
+        outcome: string;
         github?: string;
         demo?: string;
         tags: string[];
     }[];
+    tools: {
+        title: string;
+        description: string;
+        url: string;
+    }[];
 }
 
-export function getPortfolioData(): PortfolioData {
+export async function getPortfolioData(): Promise<PortfolioData> {
     const filePath = path.join(process.cwd(), 'data', 'portfolio.yaml');
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    return yaml.load(fileContents) as PortfolioData;
+    const data = yaml.load(fileContents) as PortfolioData;
+
+    return data;
 }

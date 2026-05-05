@@ -1,48 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
 
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-fg);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+}
 
 :root {
-  --font-inter: "Inter", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-space: "Space Grotesk", sans-serif;
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #f4f4f5;
+  --muted-fg: #71717a;
+  --border: #e4e4e7;
+  --accent: #2563eb;
 }
 
-.font-sans {
-  font-family: var(--font-inter);
-}
-
-.font-heading {
-  font-family: var(--font-montserrat);
-}
-
-.font-brand {
-  font-family: var(--font-space);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #09090b;
+    --fg: #fafafa;
+    --muted: #27272a;
+    --muted-fg: #a1a1aa;
+    --border: #27272a;
+    --accent: #3b82f6;
+  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-
   body {
-    @apply bg-black text-zinc-300 antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fade-in 1s ease-in-out;
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-md border border-border;
   }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
+  .tech-border {
+    @apply border border-border hover:border-accent transition-colors duration-200;
   }
 }
