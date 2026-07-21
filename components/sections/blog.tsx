@@ -10,27 +10,6 @@ type BlogPost = {
     excerpt: string;
 };
 
-const fallbackPosts: BlogPost[] = [
-    {
-        title: "Cloud Reliability Notes",
-        link: "https://pkdiv.medium.com",
-        pubDate: "Latest",
-        excerpt: "Practical notes on incident response, observability, and keeping production systems resilient under load...",
-    },
-    {
-        title: "Security Engineering Write-ups",
-        link: "https://pkdiv.medium.com",
-        pubDate: "Latest",
-        excerpt: "Hands-on security learnings around hardening infrastructure, reducing attack surface, and automation-first controls...",
-    },
-    {
-        title: "Systems and Infrastructure Deep Dives",
-        link: "https://pkdiv.medium.com",
-        pubDate: "Latest",
-        excerpt: "Technical deep dives on architecture decisions, trade-offs, and implementation details from real-world projects...",
-    },
-];
-
 export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: string }) {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -70,21 +49,20 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                                 .replace(/<[^>]+>/g, "")
                                 .replace(/\s+/g, " ")
                                 .trim()
-                                .slice(0, 150) + "...",
+                                .slice(0, 280) + "...",
                     }))
                     : [];
 
-                setPosts(fetchedPosts.length > 0 ? fetchedPosts : fallbackPosts);
+                setPosts(fetchedPosts);
             } catch (error) {
                 console.error("Error fetching blog posts:", error);
-                setPosts(fallbackPosts);
             } finally {
                 setIsLoading(false);
             }
         }
 
         if (rssUrl) fetchRSS();
-    }, [rssUrl]);
+    }, [rssUrl, blogUrl]);
 
     return (
         <section id="blog" className="py-24 space-y-12 border-t border-border/50">
@@ -105,21 +83,21 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                 </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {isLoading ? (
-                    Array.from({ length: 3 }).map((_, i) => (
-                        <div key={i} className="h-64 glass-panel animate-pulse rounded-sm border border-border/50" />
+                    Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="aspect-square glass-panel animate-pulse rounded-sm border border-border/50" />
                     ))
                 ) : posts.length > 0 ? (
-                    posts.map((post, idx) => (
+                    posts.map((post) => (
                         <a
-                            key={idx}
+                            key={post.link}
                             href={post.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group h-full"
                         >
-                            <article className="h-full glass-panel p-6 space-y-4 hover:bg-muted/50 transition-all duration-300 tech-border rounded-sm flex flex-col justify-between">
+                            <article className="h-full aspect-square glass-panel p-6 space-y-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/5 hover:border-accent/40 transition-all duration-300 tech-border rounded-sm flex flex-col justify-between">
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
                                         <Calendar className="w-3 h-3" />
@@ -133,7 +111,7 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                                     </p>
                                 </div>
 
-                                <div className="pt-4 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="pt-4 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors">
                                     Read Post <ExternalLink className="w-3 h-3" />
                                 </div>
                             </article>

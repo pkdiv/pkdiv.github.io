@@ -6,8 +6,8 @@ import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { getPortfolioData } from "@/lib/data";
 
-export default async function Home() {
-    const data = await getPortfolioData();
+export default function Home() {
+    const data = getPortfolioData();
 
     return (
         <main className="min-h-screen">

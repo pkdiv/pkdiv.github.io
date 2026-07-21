@@ -1,9 +1,9 @@
 personal:
   name: Divyesh P K
-  role: Cloud & Security Engineer
+  role: DevOps & Security Engineer
   bio_lines:
-    - "I design and operate secure and scalable systems."
-    - "Focusing on infrastructure, automation, and security at scale."
+    - "I design, automate, and operate secure and scalable systems."
+    - "Bridging infrastructure automation with cloud-native security at scale."
   email: hello@pkdiv.com
   resume_url: /resume.pdf
   blog_url: "https://pkdiv.medium.com"
@@ -13,7 +13,7 @@ personal:
     linkedin: https://linkedin.com/in/divyeshpk
 
 experiences:
-  - role: "Cloud Security Engineer (& Network)"
+  - role: "DevOps & Cloud Security Engineer"
     company: "Betsol India Pvt Ltd"
     period: "Jan 2024 - Nov 2025"
     description: "Configuring EC2, firewalls, and monitoring stacks. Leading network migrations and ensuring high availability."
@@ -33,6 +33,38 @@ projects:
     outcome: "Built a type-safe, concurrent DNS server in Go with features like domain filtering, rate limiting, and logging."
     github: "https://github.com/pkdiv/go-host"
     tags: [Go, DNS]
+  - title: Incognito Prompt
+    problem: "A privacy-first browser extension that strips sensitive data (file paths, project names, PII) from text prompts before they reach LLMs like ChatGPT, Claude, and Gemini."
+    architecture: "/placeholder-diagram.svg"
+    decisions:
+    - "100% Local Processing — All sanitization happens in-browser via JavaScript; zero data leaves the machine"
+    - "Paste Interception — Registers a capture-phase paste listener across 8 LLM domains to sanitize before the site's own handler fires"
+    - "Path Stripping — Detects Unix/macOS and Windows file paths via regex and replaces them with a configurable placeholder (e.g.,[LOCAL_PATH])"
+    - "Custom Matchlist — Users can define specific words, project names, or codenames to be redacted to [REDACTED]"
+    - "Targeted Activation — Two modes: universal (all supported domains) or site-specific (user-selectable whitelist)"
+    - "DOM Agnostic — Uses document-level event capture (not CSS selectors) so it survives LLM DOM changes"
+    - "Synchronous Settings Cache — chrome.storage is read once and cached so the paste handler has zero async gap, preventing race conditions with downstream handlers"
+    - "Manifest V3 — Full adherence to Chromium MV3 with a service worker background script"
+    challenges: "Intercepting paste events in the capture phase before the host LLM's handler runs, while preserving web URLs (so path regex doesn't mangle them) and supporting both native inputs and contentEditable elements across diverse LLM UIs."
+    outcome: "Built a zero-dependency, privacy-hardened Chrome extension that strips internal paths and sensitive keywords from pasted prompts across all major LLM platforms, with a clean options UI and roadmap to full PII redaction."
+    github: "https://github.com/pkdiv/incognito-prompt"
+    tags: [Browser Extension, Privacy, JavaScript, Manifest V3]
+  - title: Marklet
+    problem: "A privacy-first browser extension that lets users save and revisit exact text snippets from any webpage — with cross-DOM-node text matching, temporary visual highlighting, and full bookmark management."
+    architecture: "/placeholder-diagram.svg"
+    decisions:
+    - "Dual Manifest Split — Separate manifests for Chrome (MV3 with service worker) and Firefox (MV2) to support both browser families during the MV3 transition"
+    - "Cross-Node Text Matching — Builds a combined normalized string across all DOM text nodes with a position mapping, enabling exact range selection even when text spans multiple HTML elements"
+    - "Temporary Visual Highlight — Matched text gets a gold (#e2c97e) highlight via surroundContents that fades out over 1.5 seconds and is removed after 2 seconds"
+    - "Jump-Back Navigation — Clicks a bookmark, if on the source page scrolls and highlights; if on a different page, navigates there first, waits for load, then finds and highlights the text"
+    - "Local-First Storage — All bookmarks persisted in chrome.storage.local under a single markletBookmarks key; no external servers, analytics, or tracking"
+    - "Right-Click Saving — Select text on any page, right-click 'Save to Marklet', and it's stored with text, URL, title, favicon, and timestamp"
+    - "Real-Time Search — Filters bookmarks by keyword with matched text highlighted in blue accent marks"
+    - "Dark Glassmorphism UI — Dark-themed 360x500 popup with translucent surfaces, gradient accents, smooth animations, and toast notifications"
+    challenges: "Implementing cross-node text matching that handles whitespace normalization and non-breaking spaces while mapping normalized positions back to raw DOM offsets for precise range creation."
+    outcome: "Built a polished, privacy-focused browser extension with a sophisticated DOM text-matching engine, dual-browser support, and a modern dark-themed UI — all data stored locally with zero external dependencies."
+    github: "https://github.com/pkdiv/Marklet"
+    tags: [Browser Extension, JavaScript, DOM]
 
 
 

@@ -179,13 +179,20 @@ export default function Particles({
         };
     }, [dpr, ease, quantity, refresh, staticity]);
 
-    const onMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const onPointerMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
         if (canvasRef.current) {
             const rect = canvasRef.current.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            mouse.current.x = x * dpr;
-            mouse.current.y = y * dpr;
+            let clientX: number;
+            let clientY: number;
+            if ("touches" in e) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            mouse.current.x = (clientX - rect.left) * dpr;
+            mouse.current.y = (clientY - rect.top) * dpr;
         }
     };
 
@@ -194,7 +201,8 @@ export default function Particles({
             className={className}
             ref={canvasContainerRef}
             aria-hidden="true"
-            onMouseMove={onMouseMove}
+            onMouseMove={onPointerMove}
+            onTouchMove={onPointerMove}
         >
             <canvas ref={canvasRef} />
         </div>

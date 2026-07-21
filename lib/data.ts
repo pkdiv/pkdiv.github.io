@@ -40,7 +40,7 @@ export interface PortfolioData {
     }[];
 }
 
-export async function getPortfolioData(): Promise<PortfolioData> {
+export function getPortfolioData(): PortfolioData {
     const filePath = path.join(process.cwd(), 'data', 'portfolio.yaml');
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const data = yaml.load(fileContents) as PortfolioData;

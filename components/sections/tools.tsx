@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PortfolioData } from "@/lib/data";
 
 export function Tools({ data }: { data: PortfolioData['tools'] }) {
@@ -11,21 +12,35 @@ export function Tools({ data }: { data: PortfolioData['tools'] }) {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.map((tool, idx) => (
-                    <a key={idx} href={tool.url} target="_blank" rel="noreferrer" className="block group">
+                {data.map((tool, idx) => {
+                    const isExternal = tool.url.startsWith("http");
+                    const content = (
                         <article className="glass-panel p-6 h-full hover:bg-muted/50 transition-colors tech-border rounded-sm flex flex-col justify-between space-y-4">
                             <div className="space-y-2">
                                 <h3 className="text-lg font-semibold text-foreground group-hover:text-accent flex items-center justify-between">
                                     {tool.title}
-                                    <span className="text-muted-foreground group-hover:text-accent transition-colors">↗</span>
+                                    <span className="text-muted-foreground group-hover:text-accent transition-colors">{isExternal ? "↗" : "→"}</span>
                                 </h3>
                                 <p className="text-sm text-foreground/80">
                                     {tool.description}
                                 </p>
                             </div>
                         </article>
-                    </a>
-                ))}
+                    );
+
+                    if (isExternal) {
+                        return (
+                            <a key={idx} href={tool.url} target="_blank" rel="noreferrer" className="block group">
+                                {content}
+                            </a>
+                        );
+                    }
+                    return (
+                        <Link key={idx} href={tool.url} className="block group">
+                            {content}
+                        </Link>
+                    );
+                })}
             </div>
         </section>
     );
