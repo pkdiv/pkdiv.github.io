@@ -2,7 +2,6 @@ import { Hero } from "@/components/sections/hero";
 import { FeaturedProjects } from "@/components/sections/featured-projects";
 import { BlogSection } from "@/components/sections/blog";
 import { Tools } from "@/components/sections/tools";
-import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { getPortfolioData } from "@/lib/data";
 
@@ -13,9 +12,8 @@ export default function Home() {
         <main className="min-h-screen">
             <div className="max-w-4xl mx-auto px-6 sm:px-12 lg:px-24 w-full">
                 <Hero data={data.personal} />
-                <About data={data.personal} />
-                <FeaturedProjects data={data.projects} />
                 <BlogSection rssUrl={data.personal.rss_url} blogUrl={data.personal.blog_url} />
+                <FeaturedProjects data={data.projects} />
                 <Tools data={data.tools} />
                 <Contact data={data.personal} />
             </div>

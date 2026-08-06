@@ -2,7 +2,7 @@ import { PortfolioData } from "@/lib/data";
 
 export function FeaturedProjects({ data }: { data: PortfolioData['projects'] }) {
     return (
-        <section id="projects" className="py-24 space-y-12 border-t border-border/50">
+        <section id="projects" className="py-24 space-y-12">
             <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tight text-foreground">Featured Systems</h2>
                 <p className="text-muted-foreground text-lg">Deep dives into recent architecture and technical decisions.</p>

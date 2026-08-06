@@ -9,7 +9,7 @@ import { PortfolioData } from "@/lib/data";
 
 const navItems = [
     { label: "Home", href: "#home" },
-    { label: "Experience", href: "#experience" },
+    { label: "Blog", href: "#blog" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
 ];

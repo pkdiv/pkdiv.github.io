@@ -1,13 +1,13 @@
 personal:
   name: Divyesh P K
-  role: DevOps & Security Engineer
+  role: DevSecOps Engineer
   bio_lines:
     - "I design, automate, and operate secure and scalable systems."
     - "Bridging infrastructure automation with cloud-native security at scale."
   email: hello@pkdiv.com
   resume_url: /resume.pdf
-  blog_url: "https://pkdiv.medium.com"
-  rss_url: "https://pkdiv.medium.com/feed"
+  blog_url: "https://blog.pkdiv.com/"
+  rss_url: "https://blog.pkdiv.com/rss.xml"
   socials:
     github: https://github.com/pkdiv
     linkedin: https://linkedin.com/in/divyeshpk

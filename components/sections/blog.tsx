@@ -65,8 +65,8 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
     }, [rssUrl, blogUrl]);
 
     return (
-        <section id="blog" className="py-24 space-y-12 border-t border-border/50">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <section id="blog" className="pt-16 pb-24 space-y-12 border-t border-border/50">
+            <div className="space-y-6">
                 <div className="space-y-4">
                     <h2 className="text-3xl font-bold tracking-tight text-foreground">Latest Articles</h2>
                     <p className="text-muted-foreground text-lg max-w-2xl">
@@ -83,10 +83,10 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                 </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-6">
                 {isLoading ? (
                     Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i} className="aspect-square glass-panel animate-pulse rounded-sm border border-border/50" />
+                        <div key={i} className="h-40 animate-pulse" />
                     ))
                 ) : posts.length > 0 ? (
                     posts.map((post) => (
@@ -95,9 +95,9 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                             href={post.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group h-full"
+                            className="group"
                         >
-                            <article className="h-full aspect-square glass-panel p-6 space-y-4 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/5 hover:border-accent/40 transition-all duration-300 tech-border rounded-sm flex flex-col justify-between">
+                            <article className="py-6 space-y-4 flex flex-col border-b border-border/50 group-hover:border-accent/30 transition-colors">
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
                                         <Calendar className="w-3 h-3" />
@@ -118,7 +118,7 @@ export function BlogSection({ rssUrl, blogUrl }: { rssUrl: string; blogUrl: stri
                         </a>
                     ))
                 ) : (
-                    <div className="col-span-full py-12 text-center glass-panel border border-dashed border-border/50">
+                    <div className="col-span-full py-12 text-center border-y border-dashed border-border/50">
                         <p className="text-muted-foreground">Unable to load latest posts. Please visit my blog directly.</p>
                         <a
                             href={blogUrl}

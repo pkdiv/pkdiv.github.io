@@ -7,7 +7,7 @@ import { PortfolioData } from "@/lib/data";
 
 const navItems = [
     { label: "Home", href: "#home" },
-    { label: "Experience", href: "#experience" },
+    { label: "Blog", href: "#blog" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
 ];
@@ -37,7 +37,7 @@ export function NavSidebar({ data }: NavSidebarProps) {
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        const sections = ["home", "experience", "projects", "contact"];
+        const sections = ["home", "blog", "projects", "contact"];
         sections.forEach((id) => {
             const element = document.getElementById(id);
             if (element) observer.observe(element);
