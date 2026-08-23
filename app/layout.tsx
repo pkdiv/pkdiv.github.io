@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { getPortfolioData } from "@/lib/data";
 import { LayoutShell } from "@/components/layout-shell";
+import { SidebarProvider } from "@/lib/sidebar-context";
 
 export const metadata: Metadata = {
   title: "Divyesh P K | DevOps & Security Engineer",
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body>
-        <LayoutShell data={data}>{children}</LayoutShell>
+        <SidebarProvider>
+          <LayoutShell data={data}>{children}</LayoutShell>
+        </SidebarProvider>
       </body>
     </html>
   );

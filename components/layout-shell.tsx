@@ -1,7 +1,10 @@
+"use client";
+
 import { NavSidebar } from "@/components/nav-sidebar";
 import { MobileNav } from "@/components/mobile-nav";
 import Particles from "@/components/particles";
 import { PortfolioData } from "@/lib/data";
+import { useSidebar } from "@/lib/sidebar-context";
 
 interface LayoutShellProps {
     children: React.ReactNode;
@@ -9,6 +12,8 @@ interface LayoutShellProps {
 }
 
 export function LayoutShell({ children, data }: LayoutShellProps) {
+    const { hideSidebar } = useSidebar();
+
     return (
         <div className="flex min-h-screen text-zinc-300 font-sans selection:bg-zinc-500/30">
             {/* Background Layer */}
@@ -19,12 +24,14 @@ export function LayoutShell({ children, data }: LayoutShellProps) {
                 quantity={100}
             />
 
-            <div className="hidden lg:block">
-                <NavSidebar data={data} />
-            </div>
+            {!hideSidebar && (
+                <div className="hidden lg:block">
+                    <NavSidebar data={data} />
+                </div>
+            )}
 
             <main className="flex-1 w-full flex flex-col relative z-10">
-                <MobileNav data={data} />
+                {!hideSidebar && <MobileNav data={data} />}
                 {children}
             </main>
         </div>
