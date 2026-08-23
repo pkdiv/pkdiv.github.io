@@ -21,29 +21,38 @@ export function NavSidebar({ data }: NavSidebarProps) {
     const { personal } = data;
 
     useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5,
-        };
-
-        const observerCallback = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
         const sections = ["home", "blog", "projects", "contact"];
-        sections.forEach((id) => {
-            const element = document.getElementById(id);
-            if (element) observer.observe(element);
-        });
+        const offset = 120;
 
-        return () => observer.disconnect();
+        const handleScroll = () => {
+            const scrollBottom = window.scrollY + window.innerHeight;
+            const documentBottom = document.documentElement.scrollHeight;
+
+            if (scrollBottom >= documentBottom - 2) {
+                setActiveSection(sections[sections.length - 1]);
+                return;
+            }
+
+            let current = "home";
+            for (const id of sections) {
+                const element = document.getElementById(id);
+                if (!element) continue;
+                const top = element.getBoundingClientRect().top + window.scrollY;
+                if (top <= window.scrollY + offset) {
+                    current = id;
+                }
+            }
+            setActiveSection(current);
+        };
+
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleScroll);
+        };
     }, []);
 
     return (
