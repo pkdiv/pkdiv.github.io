@@ -18,7 +18,7 @@ export default function Home() {
                 <Contact data={data.personal} />
             </div>
             
-            <footer className="fixed inset-x-0 bottom-0 py-8 text-center text-sm text-muted-foreground border-t border-border/50">
+            <footer className="fixed inset-x-0 bottom-0 py-8 text-center text-sm text-muted-foreground border-t border-border/50 backdrop-blur-md bg-background/30">
                 <p>Designed and built for scale. &copy; {new Date().getFullYear()} {data.personal.name}.</p>
             </footer>
         </main>
